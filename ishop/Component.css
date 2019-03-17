@@ -1,0 +1,18 @@
+.shop {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.shop_str {
+    display: flex;
+}
+
+.shop_str > span {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 70px;
+    border: 1px solid black;
+}
