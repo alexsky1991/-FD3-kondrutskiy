@@ -24,7 +24,7 @@ var Component = React.createClass({
                         React.DOM.span(null, e.name),
                         React.DOM.span(null, e.price),
                         React.DOM.span(null, e.number),
-                        React.DOM.span(null, e.url),
+                        React.DOM.img({src:`${e.url}`, className: 'img'}),
                 )
             
         });

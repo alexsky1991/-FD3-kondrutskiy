@@ -12,7 +12,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 30px;
+    height: 100px;
     width: 70px;
     border: 1px solid black;
+}
+
+.img {
+    height: 100px;
+    flex: 1;
 }
