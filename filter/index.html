@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	 <div id="container"></div>
+
+	<script src="https://unpkg.com/react@15/dist/react.js"></script> 
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+	<script src="comps/Input.js"></script>
+	<script src="comps/Button.js"></script>
+    <script src="comps/Check.js"></script>
+	<script src="comps/List.js"></script>
+	<script src="comps/Wrapper.js"></script>
+
+	<script>
+		var arr_str = ['частный', 'переосвидетельство', 'субстанция', 'высокий', 'одиннадцать']
+
+		ReactDOM.render(React.createElement(Wrapper, {arr_str: arr_str}), document.getElementById('container'))
+	</script>	
+</body>
+</html>
