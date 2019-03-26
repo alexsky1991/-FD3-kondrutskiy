@@ -30,8 +30,15 @@ var Component = React.createClass({
         this.setState(({arr_list}) => ({arr_list: arr}))
     },
 
-    clickStr: function(name) {
-        this.setState(({item_color}) => ({item_color: name}))
+    clickStr: function(obj) {
+        this.setState(({item_color}) => {
+            if(!obj.class_name) 
+                return {item_color: obj.name}
+
+            if(obj.class_name) 
+                return {item_color: ''}
+
+        })
     },
 
     render(){

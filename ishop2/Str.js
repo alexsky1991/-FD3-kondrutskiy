@@ -7,11 +7,10 @@ var Str = React.createClass({
     },
 
     clickPanel: function() {
-       this.props.clickStr(this.props.name)
+       this.props.clickStr(this.props)
     },
  
 	render() {
-
 		const className = "shop_str " + this.props.class_name
 
 		return React.DOM.div({className: className, onClick: this.clickPanel}, 
@@ -19,7 +18,9 @@ var Str = React.createClass({
                         React.DOM.span(null, this.props.price),
                         React.DOM.span(null, this.props.number),
                         React.DOM.img({src:`${this.props.url}`, className: 'img'}),
-                        React.DOM.span({onClick: this.clickItem}, 'удалить'),
+                        React.DOM.span({onClick: this.clickItem},
+                            React.DOM.button(null,'удалить')
+                        ),
                 )
 	}
 	
