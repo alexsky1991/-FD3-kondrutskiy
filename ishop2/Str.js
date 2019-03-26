@@ -1,30 +1,20 @@
 var Str = React.createClass({
 
-	getInitialState: function() {
-   		return { 
-    		color: false
-    	};
-  	},
-
-	clickStr: function() {
-        this.setState(({color}) => ({color: !color}))
-    },
-
     clickItem: function() {
 
     	if(confirm('удалить?'))
     		this.props.deleteItem(this.props.name);
     },
+
+    clickPanel: function() {
+       this.props.clickStr(this.props.name)
+    },
  
 	render() {
-		const {color} = this.state
 
-		let className = "shop_str"
+		const className = "shop_str " + this.props.class_name
 
-		if(color)
-			className += " red"
-
-		return React.DOM.div({className: className, onClick: this.clickStr}, 
+		return React.DOM.div({className: className, onClick: this.clickPanel}, 
                         React.DOM.span(null, this.props.name),
                         React.DOM.span(null, this.props.price),
                         React.DOM.span(null, this.props.number),

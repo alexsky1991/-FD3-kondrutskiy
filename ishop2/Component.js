@@ -4,7 +4,8 @@ var Component = React.createClass({
 
     getInitialState: function() {
         return { 
-            arr_list: this.props.list
+            arr_list: this.props.list,
+            item_color: ''
         };
     },
 
@@ -29,11 +30,15 @@ var Component = React.createClass({
         this.setState(({arr_list}) => ({arr_list: arr}))
     },
 
+    clickStr: function(name) {
+        this.setState(({item_color}) => ({item_color: name}))
+    },
+
     render(){
         var {list, name} = this.props;
 
         var table = this.state.arr_list.map(e => {
-            return  React.createElement(Str, {key:e.name, name: e.name, price: e.price, number: e.number, url: e.url, deleteItem: this.deleteItem})  
+            return  React.createElement(Str, {key:e.name, name: e.name, price: e.price, number: e.number, url: e.url, deleteItem: this.deleteItem, clickStr: this.clickStr, class_name: this.state.item_color == e.name ? 'red' : ''})  
           
         });
 
