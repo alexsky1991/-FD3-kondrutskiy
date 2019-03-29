@@ -3,7 +3,7 @@ var Str = React.createClass({
     clickItem: function() {
 
     	if(confirm('удалить?'))
-    		this.props.deleteItem(this.props.name);
+    		this.props.deleteItem(this.props.id);
     },
 
     clickPanel: function() {

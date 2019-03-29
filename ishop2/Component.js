@@ -21,31 +21,24 @@ var Component = React.createClass({
           )
     },
 
-    deleteItem: function(name) {
+    deleteItem: function(id) {
 
         var arr = this.state.arr_list.filter(e => {
-            return e.name != name
+            return e.id != id
         })
 
-        this.setState(({arr_list}) => ({arr_list: arr}))
+        this.setState({arr_list: arr})
     },
 
-    clickStr: function(obj) {
-        this.setState(({item_color}) => {
-            if(!obj.class_name) 
-                return {item_color: obj.name}
-
-            if(obj.class_name) 
-                return {item_color: ''}
-
-        })
+    clickStr: function({class_name, id}) {
+        this.setState({item_color: class_name ? '' : id});
     },
 
     render(){
         var {list, name} = this.props;
 
         var table = this.state.arr_list.map(e => {
-            return  React.createElement(Str, {key:e.name, name: e.name, price: e.price, number: e.number, url: e.url, deleteItem: this.deleteItem, clickStr: this.clickStr, class_name: this.state.item_color == e.name ? 'red' : ''})  
+            return  React.createElement(Str, {key:e.id, id: e.id, name: e.name, price: e.price, number: e.number, url: e.url, deleteItem: this.deleteItem, clickStr: this.clickStr, class_name: this.state.item_color == e.id ? 'red' : ''})  
           
         });
 

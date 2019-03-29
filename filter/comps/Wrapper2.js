@@ -3,48 +3,31 @@ const Wrapper = React.createClass({
 	getInitialState: function() {
 		return {
 			check: false,
-			content: '',
-			arr: this.props.arr_str
+			content: ''
 		}
 	},
 
 	clickInput: function(e) {
-		const value = e.target.value;
-		console.log(value);
-		let arr_prob = this.props.arr_str;
-
-		if(value) 
-			arr_prob = this.props.arr_str.filter(el => el.indexOf(this.state.content) > -1)
-		
-		if(this.state.check)
-			arr_prob = this.state.check ? arr_prob.slice().sort() : arr_prob
-
-		this.setState({
-			arr: arr_prob
-		})
+		const value = e.target.value
+		this.setState(({content}) => ({content: value}))
 	},
  
 	clickButton: function() {
-		this.setState({
-			check: false
-		})
-
+		this.setState(({content}) => ({content: '',check: false}))
 	},
 
 	clickCheck: function() {
 		this.setState(({check}) => ({check: !check}))
-
-		this.clickInput();
 	},
 
 	render() {
 		const {arr_str} = this.props,
-			  {check, content, arr} = this.state
+			  {check, content} = this.state
  
-		// let arr = check ? arr_str.slice().sort() : arr_str
+		let arr = check ? arr_str.slice().sort() : arr_str
 
-		// if(content) 
-		// 	arr = arr.filter(el => el.indexOf(content) > -1)
+		if(content) 
+			arr = arr.filter(el => el.indexOf(content) > -1)
 		
 		const button = React.createElement(Button, {clickButton: this.clickButton}),
 		      input = React.createElement(Input, {clickInput: this.clickInput, content:content}),
