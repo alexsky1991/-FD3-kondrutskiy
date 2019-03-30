@@ -10,14 +10,19 @@ const Wrapper = React.createClass({
 
 	clickInput: function(e) {
 		const value = e.target.value;
-		console.log(value);
+
+		this.setState({content: value},this.changeArray);
+
+	},
+
+	changeArray: function() {
 		let arr_prob = this.props.arr_str;
 
-		if(value) 
-			arr_prob = this.props.arr_str.filter(el => el.indexOf(this.state.content) > -1)
-		
+		if(this.state.content)
+			arr_prob = arr_prob.filter(el => el.indexOf(this.state.content) > -1)
+
 		if(this.state.check)
-			arr_prob = this.state.check ? arr_prob.slice().sort() : arr_prob
+			arr_prob = arr_prob.slice().sort()
 
 		this.setState({
 			arr: arr_prob
@@ -26,26 +31,20 @@ const Wrapper = React.createClass({
  
 	clickButton: function() {
 		this.setState({
-			check: false
-		})
+			check: false,
+			content: ''
+		}, this.changeArray)
 
 	},
 
-	clickCheck: function() {
-		this.setState(({check}) => ({check: !check}))
-
-		this.clickInput();
+	clickCheck: function(e) {
+		this.setState({check: e.target.checked}, this.changeArray)
 	},
 
 	render() {
 		const {arr_str} = this.props,
-			  {check, content, arr} = this.state
- 
-		// let arr = check ? arr_str.slice().sort() : arr_str
-
-		// if(content) 
-		// 	arr = arr.filter(el => el.indexOf(content) > -1)
-		
+			  {check, content, arr} = this.state;
+ 		
 		const button = React.createElement(Button, {clickButton: this.clickButton}),
 		      input = React.createElement(Input, {clickInput: this.clickInput, content:content}),
 			  checkbox = React.createElement(Check, {check: check, clickCheck: this.clickCheck}),
