@@ -1,0 +1,28 @@
+.shop {
+    width: 700px;
+    border: 1px solid black;
+}
+
+.shop_str {
+    display: flex;
+}
+
+.shop_str > span {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 70px;
+    border: 1px solid black;
+}
+
+.img {
+    height: 100px;
+    width: 140px;
+    flex: 1;
+}
+
+.red {
+    background: red;
+}
