@@ -1,0 +1,23 @@
+[
+	{
+		"name":"bread", 
+		"id": 1, 
+		"price": 300, 
+		"quantity": 50, 
+		"url":"img/bread.jpg"
+	},
+	{
+		"name":"milk", 
+		"id": 2, 
+		"price": 70, 
+		"quantity": 20, 
+		"url":"img/milk.jpg"
+	},
+	{
+		"name":"meat", 
+		"id": 3, 
+		"price": 600, 
+		"quantity": 40, 
+		"url":"img/meat.jpg"
+	}
+]

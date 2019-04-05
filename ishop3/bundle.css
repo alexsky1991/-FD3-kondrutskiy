@@ -1,0 +1,60 @@
+.span_buttons {
+	flex-direction: column;
+}
+
+.span_buttons button{
+	cursor: pointer;
+	margin: 2px;
+}.card {
+	width: 200px;
+	padding: 20px;
+	border: 1px solid black;
+}.editor {
+	width: 280px;
+}
+
+.editor div{
+	display: flex;
+	justify-content: space-between;
+	margin: 5px;
+	position: relative;
+}
+
+.editor_buttons button{
+	cursor: pointer;
+}
+
+.editor span{
+	position: absolute;
+    right: -140px;
+    color: red;
+}.shop {
+    width: 700px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.shop_str {
+    display: flex;
+}
+
+.shop_str > span {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 70px;
+    border: 1px solid black;
+}
+
+.img {
+    height: 100px;
+    width: 140px;
+    flex: 1;
+}
+
+.red {
+    background: red;
+}
+/*# sourceMappingURL=bundle.css.map*/
