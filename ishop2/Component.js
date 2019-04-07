@@ -38,6 +38,7 @@ var Component = React.createClass({
         var {list, name} = this.props;
 
         var table = this.state.arr_list.map(e => {
+            console.log(this)
             return  React.createElement(Str, {key:e.id, id: e.id, name: e.name, price: e.price, number: e.number, url: e.url, deleteItem: this.deleteItem, clickStr: this.clickStr, class_name: this.state.item_color == e.id ? 'red' : ''})  
           
         });

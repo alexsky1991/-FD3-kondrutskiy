@@ -4,8 +4,6 @@ import './editor-item.css'
 
 export default class EditorItem extends React.Component {
 
-
-
 	changeEditorItem = e => {
 
 		if(document.getElementById('span')) {
@@ -28,8 +26,8 @@ export default class EditorItem extends React.Component {
 
 		const { item } = this.props;
 
-		return <div >
-					{item[0]}<input data-name={item[0]} type="text" value={item[1]} onInput={this.changeEditorItem}/>
+		return <div>
+					{item[0]}<input data-name={item[0]} type="text" value={item[1]} onChange={this.changeEditorItem}/>
 				</div>
 	}
 }

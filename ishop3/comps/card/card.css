@@ -1,5 +1,11 @@
 .card {
-	width: 200px;
+	width: 450px;
 	padding: 20px;
 	border: 1px solid black;
+}
+
+.card_left {
+	width: 70px;
+	display: inline-block;
+	margin: 5px 0;
 }

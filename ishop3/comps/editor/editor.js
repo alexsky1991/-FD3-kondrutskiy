@@ -12,7 +12,6 @@ export default class Editor extends React.Component{
 		price: this.props.editor.price,
 		url: this.props.editor.url,
 		quantity: this.props.editor.quantity
-		
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -21,7 +20,8 @@ export default class Editor extends React.Component{
 			name: nextProps.editor.name,
 			price: nextProps.editor.price,
 			url: nextProps.editor.url,
-			quantity: nextProps.editor.quantity
+			quantity: nextProps.editor.quantity,
+			card: false
 	  	});
 	}
 

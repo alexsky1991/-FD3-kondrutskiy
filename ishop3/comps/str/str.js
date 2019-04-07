@@ -10,13 +10,16 @@ export default class Str extends React.Component{
     		this.props.deleteItem(this.props.id);
     }
 
-    clickPanel = () => {
+    clickPanel = e => {
+       if(e.target.value == 'редактировать' || e.target.value == 'удалить' ) {
+            return
+       }
        this.props.clickStr(this.props)
     }
  
 	render() {
-        const {clickPanel, name, price, quantity, url, id, openEditor} = this.props,
-		       className = "shop_str " + this.props.class_name
+        const {clickPanel, name, price, quantity, url, id, openEditor, editor, class_name, newItem} = this.props,
+		       className = "shop_str " + class_name
 
         return <div className={className} onClick={this.clickPanel}>
                     <span>{name}</span>
@@ -24,8 +27,8 @@ export default class Str extends React.Component{
                     <span>{quantity}</span>
                     <img className="img" src={url}/>
                     <span className="span_buttons">
-                        <button onClick={() => openEditor(this.props)}>редактировать</button>
-                        <button onClick={this.clickItem}>удалить</button>
+                        <input type="button" disabled={newItem ? true : false} onClick={() => openEditor(this.props)} value="редактировать"/>
+                        <input type="button" value="удалить" onClick={this.clickItem} disabled={editor ? true : false}/>
                     </span>
                 </div>
 	}
