@@ -3,8 +3,8 @@
 }
 
 .span_buttons button{
-	cursor: pointer;
 	margin: 2px;
+	cursor: pointer;
 }.card {
 	width: 450px;
 	padding: 20px;
@@ -12,32 +12,13 @@
 }
 
 .card_left {
-	width: 70px;
 	display: inline-block;
+	width: 70px;
 	margin: 5px 0;
-}.editor {
-	width: 280px;
-}
-
-.editor div{
-	display: flex;
-	justify-content: space-between;
-	margin: 5px;
-	position: relative;
-}
-
-.editor_buttons button{
-	cursor: pointer;
-}
-
-.editor span{
-	position: absolute;
-    right: -140px;
-    color: red;
 }.shop {
     width: 700px;
-    border: 1px solid black;
     margin-bottom: 10px;
+    border: 1px solid black;
 }
 
 .shop_str {
@@ -55,9 +36,9 @@
 }
 
 .img {
+    flex: 1;
     height: 100px;
     width: 140px;
-    flex: 1;
 }
 
 .red {

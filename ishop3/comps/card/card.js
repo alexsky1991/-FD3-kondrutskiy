@@ -10,7 +10,17 @@ export default class Card extends React.Component {
 		name: this.props.card.name,
 		price: this.props.card.price,
 		url: this.props.card.url,
-		quantity: this.props.card.quantity,
+		quantity: this.props.card.quantity
+	}
+
+	componentWillMount() {
+		if(this.props.card.name == undefined)
+			this.setState({
+				name: '',
+				price: '',
+				url: '',
+				quantity: ''
+			})
 	}
 
 	componentWillReceiveProps(props) {
@@ -24,28 +34,44 @@ export default class Card extends React.Component {
 				url: props.card.url,
 				quantity: props.card.quantity,
 			})
-		}
-
-		
+		}	
 	}
 
+	componentDidMount() {
+		if(!this.props.newItem)
+			return;
+
+		const event = new Event('click', { bubbles: true });
+
+		[...document.querySelectorAll('input[type=text]')].forEach(el => {
+			el.dispatchEvent(event)
+		})
+	}
+
+
+
 	changeInput = e => {
-		console.log(34)
+
+		if(e.target.tagName != 'INPUT')
+			return;
+
+		if(e.target.value == "Cansel" || e.target.value == "Save")
+			return;
+
 		this.props.modeCard();
+
 		const info = e.target.dataset.name;
 		const value = e.target.value;
-
 		const parent = e.target.parentNode;
 
-		if(parent.childNodes.length > 3)
+		if(parent.childNodes.length > 2)
 			parent.removeChild(parent.lastElementChild)
-		
+	
 		if(value == '') {
 			let item = document.createElement('span');
 			item.id = 'span';
 			item.innerHTML = 'Please, fill the field';
 			parent.appendChild(item);
-
 		} 
 		
 		if(info == 'name') 
@@ -61,38 +87,31 @@ export default class Card extends React.Component {
 			this.setState({quantity: value})
 	}
 
-
 	render() {
+
 		const {card_editor, id, name, price, url, quantity } = this.state;
 		const {changeItem, newItem, addItem, removeCard} = this.props;
-		console.log(name, price, url, quantity)
 
-		// if(newItem) {
-		// 	console.log(document.querySelectorAll('input[type=text]'));
-		// 	[...document.querySelectorAll('input[type=text]')].forEach(e => {
-		// 		e.trigger('click');
-		// 	})
-		// }
-
-
-		return <div className="card">
+		return <div className="card" onClick={this.changeInput}>
 			<div>ID: {id}</div>
-			<div><span className="card_left">Name:</span> {card_editor ? <input type="text" value={name} data-name="name" onChange={this.changeInput}/> : name}</div>
+			<div><span className="card_left">Name:</span>{card_editor ? <input type="text" value={name} data-name="name" onChange={this.changeInput}  /> : name}</div>
 
-			<div><span className="card_left">Price:</span> {card_editor ? <input type="text" value={price} data-name="price" onChange={this.changeInput}/> : price}</div>
+			<div><span className="card_left">Price:</span>{card_editor ? <input type="text" value={price} data-name="price" onChange={this.changeInput}/> : price}</div>
 
-			<div><span className="card_left">URL:</span> {card_editor ? <input type="text" value={url} data-name="url" onChange={this.changeInput}/> : url}</div>
+			<div><span className="card_left">URL:</span>{card_editor ? <input type="text" value={url} data-name="url" onChange={this.changeInput}/> : url}</div>
 
-			<div><span className="card_left">Quantity:</span> {card_editor ? <input type="text" data-name="quantity" value={quantity} onChange={this.changeInput}/> : quantity}</div>
+			<div><span className="card_left">Quantity:</span>{card_editor ? <input type="text" data-name="quantity" value={quantity} onChange={this.changeInput}/> : quantity}</div>
 
-			<div className="editor_buttons">
-				{newItem ? 
-					<input type="button" value="Add" onClick={() => addItem(this.state)} disabled={[name, price, url, quantity].some(e => e=='' || e==undefined) ? true : false}/>
-				 :
-					<input type="button" value="Save" onClick={() => changeItem(this.state)} disabled={[name, price, url, quantity].some(e => e=='') ? true : false}/>
-				}
-					<input type="button" value="Cansel" onClick ={removeCard}/>
+			{card_editor &&
+				<div className="editor_buttons">
+					{newItem ? 
+						<input type="button" value="Add" onClick={() => addItem(this.state)} disabled={[name, price, url, quantity].some(e => e=='' || e==undefined) ? true : false}/>
+					 :
+						<input type="button" value="Save" onClick={() => changeItem(this.state)} disabled={[name, price, url, quantity].some(e => e=='') ? true : false}/>
+					}
+						<input type="button" value="Cansel" onClick ={removeCard}/>
 				</div>
+			}
 		</div>
 	}
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import Table from '../table'
 import Card from '../card'
-import Editor from '../editor'
 
 import './main.css'
 
@@ -21,7 +20,6 @@ export default class Main extends React.Component {
         this.setState({
                 arr_list: arr,
                 card: false
-                // item_color: false
             })
     }
 
@@ -31,25 +29,23 @@ export default class Main extends React.Component {
 
         const {class_name, id} = props;
         this.setState({
-                // item_color: class_name ? '' : id,
                 card: class_name ? false : props,
                 editor: false
             })
     }
 
     openEditor = props => {
-        console.log(11)
          if(this.state.mode)
             return;
 
         this.setState({
-                // item_color: props.id,
                 card: props,
                 editor: true
             })
     }
 
     modeCard = () => {
+
         this.setState({
             mode: true
         })
@@ -80,25 +76,23 @@ export default class Main extends React.Component {
     }
 
     addItem = (props) => {
-        console.log(props);
         const new_id = this.state.arr_list.slice(-1)[0].id + 1;
-        console.log(new_id)
 
         const newItem = {
             id: new_id,
             name: props.name,
-            price: +props.price,
+            price: props.price,
             url: props.url,
-            quantity: +props.quantity
+            quantity: props.quantity
         }
 
         const arr = this.state.arr_list.slice();
         arr.push(newItem);
-        console.log(arr);
        this.setState({arr_list: arr})
     }
 
     removeCard = () => {
+
         this.setState({
             card: false,
             editor: false,
@@ -122,8 +116,7 @@ export default class Main extends React.Component {
 
                     {card && <Card card = {card} editor={editor} changeItem = {this.changeItem} modeCard={this.modeCard} newItem = {newItem}
                     addItem={this.addItem} removeCard={this.removeCard}/>}
-
-
+                    
                 </div>
     
     }

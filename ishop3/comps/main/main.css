@@ -1,7 +1,7 @@
 .shop {
     width: 700px;
-    border: 1px solid black;
     margin-bottom: 10px;
+    border: 1px solid black;
 }
 
 .shop_str {
@@ -19,9 +19,9 @@
 }
 
 .img {
+    flex: 1;
     height: 100px;
     width: 140px;
-    flex: 1;
 }
 
 .red {

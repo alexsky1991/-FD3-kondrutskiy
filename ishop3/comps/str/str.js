@@ -11,9 +11,9 @@ export default class Str extends React.Component{
     }
 
     clickPanel = e => {
-       if(e.target.value == 'редактировать' || e.target.value == 'удалить' ) {
+       if(e.target.value == 'редактировать' || e.target.value == 'удалить' ) 
             return
-       }
+       
        this.props.clickStr(this.props)
     }
  
@@ -27,7 +27,9 @@ export default class Str extends React.Component{
                     <span>{quantity}</span>
                     <img className="img" src={url}/>
                     <span className="span_buttons">
+
                         <input type="button" disabled={newItem ? true : false} onClick={() => openEditor(this.props)} value="редактировать"/>
+
                         <input type="button" value="удалить" onClick={this.clickItem} disabled={editor ? true : false}/>
                     </span>
                 </div>
