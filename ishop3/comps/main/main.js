@@ -70,15 +70,24 @@ export default class Main extends React.Component {
     addForm = () => {
         this.setState({
             newItem: true,
-            card: true,
+            card: {
+                id: '',
+                name: '',
+                price: '',
+                url: '',
+                quantity: ''
+            },
             editor: true
         })
     }
 
     addItem = (props) => {
-        const new_id = this.state.arr_list.slice(-1)[0].id + 1;
+        const { arr_list } = this.state;
 
-        const newItem = {
+        let new_id = arr_list.length == 0 ? 1 : arr_list.slice(-1)[0].id + 1;  
+
+
+        let newItem = {
             id: new_id,
             name: props.name,
             price: props.price,
@@ -88,7 +97,13 @@ export default class Main extends React.Component {
 
         const arr = this.state.arr_list.slice();
         arr.push(newItem);
-       this.setState({arr_list: arr})
+       this.setState({
+            arr_list: arr,
+            card: false,
+            editor: false,
+            mode: false,
+            newItem: false
+        })
     }
 
     removeCard = () => {

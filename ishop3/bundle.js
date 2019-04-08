@@ -25434,11 +25434,20 @@ var Main = function (_React$Component) {
         }, _this.addForm = function () {
             _this.setState({
                 newItem: true,
-                card: true,
+                card: {
+                    id: '',
+                    name: '',
+                    price: '',
+                    url: '',
+                    quantity: ''
+                },
                 editor: true
             });
         }, _this.addItem = function (props) {
-            var new_id = _this.state.arr_list.slice(-1)[0].id + 1;
+            var arr_list = _this.state.arr_list;
+
+
+            var new_id = arr_list.length == 0 ? 1 : arr_list.slice(-1)[0].id + 1;
 
             var newItem = {
                 id: new_id,
@@ -25450,7 +25459,13 @@ var Main = function (_React$Component) {
 
             var arr = _this.state.arr_list.slice();
             arr.push(newItem);
-            _this.setState({ arr_list: arr });
+            _this.setState({
+                arr_list: arr,
+                card: false,
+                editor: false,
+                mode: false,
+                newItem: false
+            });
         }, _this.removeCard = function () {
 
             _this.setState({
@@ -25837,6 +25852,8 @@ var Card = function (_React$Component) {
 
 			if (e.target.value == "Cansel" || e.target.value == "Save") return;
 
+			if (e.target.value == 'Add') return;
+
 			_this.props.modeCard();
 
 			var info = e.target.dataset.name;
@@ -25863,16 +25880,6 @@ var Card = function (_React$Component) {
 	}
 
 	_createClass(Card, [{
-		key: 'componentWillMount',
-		value: function componentWillMount() {
-			if (this.props.card.name == undefined) this.setState({
-				name: '',
-				price: '',
-				url: '',
-				quantity: ''
-			});
-		}
-	}, {
 		key: 'componentWillReceiveProps',
 		value: function componentWillReceiveProps(props) {
 			this.setState({ card_editor: props.editor });
@@ -25886,6 +25893,18 @@ var Card = function (_React$Component) {
 					quantity: props.card.quantity
 				});
 			}
+		}
+	}, {
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps) {
+
+			if (prevProps.card.id == this.props.card.id) return;
+
+			var event = new Event('click', { bubbles: true });
+
+			[].concat(_toConsumableArray(document.querySelectorAll('input[type=text]'))).forEach(function (el) {
+				el.dispatchEvent(event);
+			});
 		}
 	}, {
 		key: 'componentDidMount',

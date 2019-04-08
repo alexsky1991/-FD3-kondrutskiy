@@ -13,16 +13,6 @@ export default class Card extends React.Component {
 		quantity: this.props.card.quantity
 	}
 
-	componentWillMount() {
-		if(this.props.card.name == undefined)
-			this.setState({
-				name: '',
-				price: '',
-				url: '',
-				quantity: ''
-			})
-	}
-
 	componentWillReceiveProps(props) {
 		this.setState({card_editor: props.editor})
 
@@ -35,6 +25,18 @@ export default class Card extends React.Component {
 				quantity: props.card.quantity,
 			})
 		}	
+	}
+
+	componentDidUpdate(prevProps) {
+
+		if(prevProps.card.id == this.props.card.id)
+			return
+
+		const event = new Event('click', { bubbles: true });
+
+		[...document.querySelectorAll('input[type=text]')].forEach(el => {
+			el.dispatchEvent(event)
+		})
 	}
 
 	componentDidMount() {
@@ -57,6 +59,9 @@ export default class Card extends React.Component {
 
 		if(e.target.value == "Cansel" || e.target.value == "Save")
 			return;
+
+		if(e.target.value == 'Add')
+			return
 
 		this.props.modeCard();
 
