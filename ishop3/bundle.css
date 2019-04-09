@@ -44,4 +44,8 @@
 .red {
     background: red;
 }
+
+input {
+    cursor: pointer;
+}
 /*# sourceMappingURL=bundle.css.map*/

@@ -25846,6 +25846,12 @@ var Card = function (_React$Component) {
 			price: _this.props.card.price,
 			url: _this.props.card.url,
 			quantity: _this.props.card.quantity
+		}, _this.invokeValid = function () {
+			var event = new Event('click', { bubbles: true });
+
+			[].concat(_toConsumableArray(document.querySelectorAll('input[type=text]'))).forEach(function (el) {
+				el.dispatchEvent(event);
+			});
 		}, _this.changeInput = function (e) {
 
 			if (e.target.tagName != 'INPUT') return;
@@ -25854,7 +25860,7 @@ var Card = function (_React$Component) {
 
 			if (e.target.value == 'Add') return;
 
-			_this.props.modeCard();
+			if (e.isTrusted && e.type == 'click') _this.props.modeCard();
 
 			var info = e.target.dataset.name;
 			var value = e.target.value;
@@ -25880,47 +25886,33 @@ var Card = function (_React$Component) {
 	}
 
 	_createClass(Card, [{
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(props) {
-			this.setState({ card_editor: props.editor });
+		key: 'componentDidUpdate',
+		value: function componentDidUpdate(prevProps) {
+			var _this2 = this;
 
-			if (this.state.id != props.card.id) {
+			if (prevProps.editor != this.props.editor) this.setState({ card_editor: this.props.editor });
+
+			if (prevProps.card.id != this.props.card.id) {
 				this.setState({
-					id: props.card.id,
-					name: props.card.name,
-					price: props.card.price,
-					url: props.card.url,
-					quantity: props.card.quantity
+					id: this.props.card.id,
+					name: this.props.card.name,
+					price: this.props.card.price,
+					url: this.props.card.url,
+					quantity: this.props.card.quantity
+				}, function () {
+					if (prevProps.card.id != _this2.props.card.id) _this2.invokeValid();
 				});
 			}
 		}
 	}, {
-		key: 'componentDidUpdate',
-		value: function componentDidUpdate(prevProps) {
-
-			if (prevProps.card.id == this.props.card.id) return;
-
-			var event = new Event('click', { bubbles: true });
-
-			[].concat(_toConsumableArray(document.querySelectorAll('input[type=text]'))).forEach(function (el) {
-				el.dispatchEvent(event);
-			});
-		}
-	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			if (!this.props.newItem) return;
-
-			var event = new Event('click', { bubbles: true });
-
-			[].concat(_toConsumableArray(document.querySelectorAll('input[type=text]'))).forEach(function (el) {
-				el.dispatchEvent(event);
-			});
+			if (this.props.newItem) this.invokeValid();
 		}
 	}, {
 		key: 'render',
 		value: function render() {
-			var _this2 = this;
+			var _this3 = this;
 
 			var _state = this.state,
 			    card_editor = _state.card_editor,
@@ -25989,11 +25981,11 @@ var Card = function (_React$Component) {
 					'div',
 					{ className: 'editor_buttons' },
 					newItem ? _react2.default.createElement('input', { type: 'button', value: 'Add', onClick: function onClick() {
-							return addItem(_this2.state);
+							return addItem(_this3.state);
 						}, disabled: [name, price, url, quantity].some(function (e) {
 							return e == '' || e == undefined;
 						}) ? true : false }) : _react2.default.createElement('input', { type: 'button', value: 'Save', onClick: function onClick() {
-							return changeItem(_this2.state);
+							return changeItem(_this3.state);
 						}, disabled: [name, price, url, quantity].some(function (e) {
 							return e == '';
 						}) ? true : false }),

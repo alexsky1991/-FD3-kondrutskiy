@@ -13,43 +13,41 @@ export default class Card extends React.Component {
 		quantity: this.props.card.quantity
 	}
 
-	componentWillReceiveProps(props) {
-		this.setState({card_editor: props.editor})
-
-		if(this.state.id != props.card.id) {
-			this.setState({
-				id: props.card.id,
-				name: props.card.name,
-				price: props.card.price,
-				url: props.card.url,
-				quantity: props.card.quantity,
-			})
-		}	
-	}
-
+	
 	componentDidUpdate(prevProps) {
 
-		if(prevProps.card.id == this.props.card.id)
-			return
+		if(prevProps.editor != this.props.editor)
+			this.setState({card_editor: this.props.editor});
 
-		const event = new Event('click', { bubbles: true });
+		if(prevProps.card.id != this.props.card.id) {
+			this.setState({
+				id: this.props.card.id,
+				name: this.props.card.name,
+				price: this.props.card.price,
+				url: this.props.card.url,
+				quantity: this.props.card.quantity,
+			}, () => {
+				if(prevProps.card.id != this.props.card.id)
+					this.invokeValid();
+			})
+		}
 
-		[...document.querySelectorAll('input[type=text]')].forEach(el => {
-			el.dispatchEvent(event)
-		})
 	}
+
 
 	componentDidMount() {
-		if(!this.props.newItem)
-			return;
+		if(this.props.newItem)
+			this.invokeValid();
+	}
 
+
+	invokeValid = () => {
 		const event = new Event('click', { bubbles: true });
 
 		[...document.querySelectorAll('input[type=text]')].forEach(el => {
 			el.dispatchEvent(event)
 		})
 	}
-
 
 
 	changeInput = e => {
@@ -63,7 +61,8 @@ export default class Card extends React.Component {
 		if(e.target.value == 'Add')
 			return
 
-		this.props.modeCard();
+		if(e.isTrusted && e.type == 'click')
+			this.props.modeCard();
 
 		const info = e.target.dataset.name;
 		const value = e.target.value;
@@ -91,6 +90,7 @@ export default class Card extends React.Component {
 		if(info == 'quantity') 
 			this.setState({quantity: value})
 	}
+
 
 	render() {
 
