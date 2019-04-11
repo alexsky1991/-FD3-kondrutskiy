@@ -12,7 +12,6 @@ export default class Card extends React.Component {
 		url: this.props.card.url,
 		quantity: this.props.card.quantity
 	}
-
 	
 	componentDidUpdate(prevProps) {
 
