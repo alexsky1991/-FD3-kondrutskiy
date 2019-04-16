@@ -1,29 +1,20 @@
-﻿import React from 'react';
+﻿import React, { Fragment } from 'react';
 
 export default class Main extends React.Component {
 
 	constructor(props) {
 	    super(props);
+		this.arr = this.props.text.split('<br/>');
 
-	    const text = `<div>${this.props.text}</div>`;
-	    const doc = new DOMParser().parseFromString(text, "application/xml");
-
-	    const nodes = doc.childNodes[0].childNodes;
-
-	    this.result = Object.values(nodes).map((value, i) => {
-
-	      if(value.localName == 'br')
-	     	return <br key={i}/>
+		this.result = this.arr.map((el, i) => {
+			if(i == this.arr.length - 1) 
+				return el
 			
-	      return value.data
-	    });
-
+	    	return <Fragment key={i}>{el}<br/></Fragment>
+	    })
 	}
 
-
-  render() {
-    return <div className="br2jsx">{this.result}</div>
-  }
-
+  render = () => <div className="br2jsx">{this.result}</div>
+ 
 }
 
