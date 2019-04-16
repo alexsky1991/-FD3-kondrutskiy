@@ -2,12 +2,12 @@
 
 export default class Main extends React.Component {
 
-	constructor(props) {
-	    super(props);
-		this.arr = this.props.text.split('<br/>');
+	constructor({text}) {
+	    super();
+		let arr = text.split('<br/>');
 
-		this.result = this.arr.map((el, i) => {
-			if(i == this.arr.length - 1) 
+		this.result = arr.map((el, i) => {
+			if(i == arr.length - 1) 
 				return el
 			
 	    	return <Fragment key={i}>{el}<br/></Fragment>
