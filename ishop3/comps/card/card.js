@@ -27,7 +27,7 @@ export default class Card extends React.Component {
 				quantity: this.props.card.quantity,
 			}, () => {
 				if(prevProps.card.id != this.props.card.id)
-					this.invokeValid();
+					this.validate();
 			})
 		}
 
@@ -36,20 +36,33 @@ export default class Card extends React.Component {
 
 	componentDidMount() {
 		if(this.props.newItem)
-			this.invokeValid();
+			this.validate();
 	}
 
 
-	invokeValid = () => {
-		const event = new Event('click', { bubbles: true });
+	validate = () => {
 
 		[...document.querySelectorAll('input[type=text]')].forEach(el => {
-			el.dispatchEvent(event)
+				
+			const value = el.value;
+			const parent = el.parentNode;
+
+			if(parent.childNodes.length > 2)
+				parent.removeChild(parent.lastElementChild)
+
+			if(value == '') {
+				let item = document.createElement('span');
+				item.id = 'span';
+				item.innerHTML = 'Please, fill the field';
+				parent.appendChild(item);
+			} 
 		})
 	}
 
 
-	changeInput = e => {
+	checkInput = e => {
+
+		const value = e.target.value;
 
 		if(e.target.tagName != 'INPUT')
 			return;
@@ -60,23 +73,11 @@ export default class Card extends React.Component {
 		if(e.target.value == 'Add')
 			return
 
-		if(e.isTrusted && e.type == 'click')
-			this.props.modeCard();
+
+		this.props.modeCard();
 
 		const info = e.target.dataset.name;
-		const value = e.target.value;
-		const parent = e.target.parentNode;
 
-		if(parent.childNodes.length > 2)
-			parent.removeChild(parent.lastElementChild)
-	
-		if(value == '') {
-			let item = document.createElement('span');
-			item.id = 'span';
-			item.innerHTML = 'Please, fill the field';
-			parent.appendChild(item);
-		} 
-		
 		if(info == 'name') 
 			this.setState({name: value})
 		
@@ -88,6 +89,9 @@ export default class Card extends React.Component {
 
 		if(info == 'quantity') 
 			this.setState({quantity: value})
+
+		this.validate();
+
 	}
 
 
@@ -96,15 +100,15 @@ export default class Card extends React.Component {
 		const {card_editor, id, name, price, url, quantity } = this.state;
 		const {changeItem, newItem, addItem, removeCard} = this.props;
 
-		return <div className="card" onClick={this.changeInput}>
+		return <div className="card">
 			<div>ID: {id}</div>
-			<div><span className="card_left">Name:</span>{card_editor ? <input type="text" value={name} data-name="name" onChange={this.changeInput}  /> : name}</div>
+			<div><span className="card_left">Name:</span>{card_editor ? <input type="text" value={name} data-name="name" onChange={this.checkInput}  /> : name}</div>
 
-			<div><span className="card_left">Price:</span>{card_editor ? <input type="text" value={price} data-name="price" onChange={this.changeInput}/> : price}</div>
+			<div><span className="card_left">Price:</span>{card_editor ? <input type="text" value={price} data-name="price" onChange={this.checkInput}/> : price}</div>
 
-			<div><span className="card_left">URL:</span>{card_editor ? <input type="text" value={url} data-name="url" onChange={this.changeInput}/> : url}</div>
+			<div><span className="card_left">URL:</span>{card_editor ? <input type="text" value={url} data-name="url" onChange={this.checkInput}/> : url}</div>
 
-			<div><span className="card_left">Quantity:</span>{card_editor ? <input type="text" data-name="quantity" value={quantity} onChange={this.changeInput}/> : quantity}</div>
+			<div><span className="card_left">Quantity:</span>{card_editor ? <input type="text" data-name="quantity" value={quantity} onChange={this.checkInput}/> : quantity}</div>
 
 			{card_editor &&
 				<div className="editor_buttons">

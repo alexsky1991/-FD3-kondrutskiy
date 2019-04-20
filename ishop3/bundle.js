@@ -25846,13 +25846,25 @@ var Card = function (_React$Component) {
 			price: _this.props.card.price,
 			url: _this.props.card.url,
 			quantity: _this.props.card.quantity
-		}, _this.invokeValid = function () {
-			var event = new Event('click', { bubbles: true });
+		}, _this.validate = function () {
 
 			[].concat(_toConsumableArray(document.querySelectorAll('input[type=text]'))).forEach(function (el) {
-				el.dispatchEvent(event);
+
+				var value = el.value;
+				var parent = el.parentNode;
+
+				if (parent.childNodes.length > 2) parent.removeChild(parent.lastElementChild);
+
+				if (value == '') {
+					var item = document.createElement('span');
+					item.id = 'span';
+					item.innerHTML = 'Please, fill the field';
+					parent.appendChild(item);
+				}
 			});
-		}, _this.changeInput = function (e) {
+		}, _this.checkInput = function (e) {
+
+			var value = e.target.value;
 
 			if (e.target.tagName != 'INPUT') return;
 
@@ -25860,20 +25872,9 @@ var Card = function (_React$Component) {
 
 			if (e.target.value == 'Add') return;
 
-			if (e.isTrusted && e.type == 'click') _this.props.modeCard();
+			_this.props.modeCard();
 
 			var info = e.target.dataset.name;
-			var value = e.target.value;
-			var parent = e.target.parentNode;
-
-			if (parent.childNodes.length > 2) parent.removeChild(parent.lastElementChild);
-
-			if (value == '') {
-				var item = document.createElement('span');
-				item.id = 'span';
-				item.innerHTML = 'Please, fill the field';
-				parent.appendChild(item);
-			}
 
 			if (info == 'name') _this.setState({ name: value });
 
@@ -25882,6 +25883,8 @@ var Card = function (_React$Component) {
 			if (info == 'url') _this.setState({ url: value });
 
 			if (info == 'quantity') _this.setState({ quantity: value });
+
+			_this.validate();
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
@@ -25900,14 +25903,14 @@ var Card = function (_React$Component) {
 					url: this.props.card.url,
 					quantity: this.props.card.quantity
 				}, function () {
-					if (prevProps.card.id != _this2.props.card.id) _this2.invokeValid();
+					if (prevProps.card.id != _this2.props.card.id) _this2.validate();
 				});
 			}
 		}
 	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			if (this.props.newItem) this.invokeValid();
+			if (this.props.newItem) this.validate();
 		}
 	}, {
 		key: 'render',
@@ -25930,7 +25933,7 @@ var Card = function (_React$Component) {
 
 			return _react2.default.createElement(
 				'div',
-				{ className: 'card', onClick: this.changeInput },
+				{ className: 'card' },
 				_react2.default.createElement(
 					'div',
 					null,
@@ -25945,7 +25948,7 @@ var Card = function (_React$Component) {
 						{ className: 'card_left' },
 						'Name:'
 					),
-					card_editor ? _react2.default.createElement('input', { type: 'text', value: name, 'data-name': 'name', onChange: this.changeInput }) : name
+					card_editor ? _react2.default.createElement('input', { type: 'text', value: name, 'data-name': 'name', onChange: this.checkInput }) : name
 				),
 				_react2.default.createElement(
 					'div',
@@ -25955,7 +25958,7 @@ var Card = function (_React$Component) {
 						{ className: 'card_left' },
 						'Price:'
 					),
-					card_editor ? _react2.default.createElement('input', { type: 'text', value: price, 'data-name': 'price', onChange: this.changeInput }) : price
+					card_editor ? _react2.default.createElement('input', { type: 'text', value: price, 'data-name': 'price', onChange: this.checkInput }) : price
 				),
 				_react2.default.createElement(
 					'div',
@@ -25965,7 +25968,7 @@ var Card = function (_React$Component) {
 						{ className: 'card_left' },
 						'URL:'
 					),
-					card_editor ? _react2.default.createElement('input', { type: 'text', value: url, 'data-name': 'url', onChange: this.changeInput }) : url
+					card_editor ? _react2.default.createElement('input', { type: 'text', value: url, 'data-name': 'url', onChange: this.checkInput }) : url
 				),
 				_react2.default.createElement(
 					'div',
@@ -25975,7 +25978,7 @@ var Card = function (_React$Component) {
 						{ className: 'card_left' },
 						'Quantity:'
 					),
-					card_editor ? _react2.default.createElement('input', { type: 'text', 'data-name': 'quantity', value: quantity, onChange: this.changeInput }) : quantity
+					card_editor ? _react2.default.createElement('input', { type: 'text', 'data-name': 'quantity', value: quantity, onChange: this.checkInput }) : quantity
 				),
 				card_editor && _react2.default.createElement(
 					'div',
