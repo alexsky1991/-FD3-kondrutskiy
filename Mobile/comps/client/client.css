@@ -1,0 +1,46 @@
+.table_line{
+	display: flex;
+	border-top: 1px solid #afafaf;
+}
+
+.line_title{
+	font-weight: bold;
+}
+
+.table_line>div{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	width: 170px;
+	height: 50px;
+}
+
+.active{
+	background: #1cca1c;
+}
+
+.blocked{
+	background: #ea0707;
+}
+
+.table_item_button {
+	padding: 8px 10px;
+	border: 1px solid #839083;
+	background: #dcdcdc;
+	cursor: pointer;
+}
+
+.table_line>div input {
+	width: 100px;
+    text-align: center;
+    background: #42ceb7;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.table_line>div input{
+	outline: none;
+}
