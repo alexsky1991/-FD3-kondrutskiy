@@ -1,0 +1,11 @@
+.company_panel {
+	display: flex;
+	padding-bottom: 12px;
+}
+
+.company_button {
+	padding: 8px 10px;
+	border: 1px solid #839083;
+	background: #dcdcdc;
+	cursor: pointer;
+}
