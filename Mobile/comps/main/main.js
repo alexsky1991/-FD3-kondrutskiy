@@ -105,14 +105,18 @@ export default class Main extends React.PureComponent{
 
 		voteEvent.addListener('addClient', () => {
 
+			let arr_id = this.state.clients.map(el=> el.id);
+
+			let max_id = Math.max(...arr_id)
+
 			let new_list = [...this.state.clients, {
-				id: this.state.clients.length + 1,
-				family: 'Григорьев',
+				id: max_id  + 1,
+				family: '',
 				name: 'Григорий',
 				patronymic: 'Григорьевич',
 				balance: 100
 			}];
-
+			
 			this.setState({clients: new_list})
 
 		});
