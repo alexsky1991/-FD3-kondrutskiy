@@ -4,7 +4,9 @@ import Table from '../table'
 
 import { voteEvent } from '../events';
 
-import {removeClient} from '../../modules/removeClient'
+import {removeClient, addClient, changeBalance, changeFamily, sortClients} 
+	from '../../modules';
+
 
 import './main.css';
 
@@ -47,23 +49,6 @@ export default class Main extends React.PureComponent{
 		sort: false
 	}
 
-	sortClients = clients => {
-
-		return clients.filter(el => {
-		 	if(this.state.sort === 'all')
-		 		return el
-
-		 	if(this.state.sort === 'active') 
-		 		return el.balance > 0
-		 	
-		 	if(this.state.sort === 'blocked')
-		 		return el.balance < 0
-
-		})
-
-	}
-	
-
 	componentDidMount = () => {
 
 		voteEvent.addListener('changeCompany', title => (
@@ -83,41 +68,18 @@ export default class Main extends React.PureComponent{
 		});
 
 		voteEvent.addListener('changeBalance', value => {
-			let new_list = this.state.clients.map(el=> {
-				if(el.id === value[0]) 
-					el.balance = value[1]
-				
-				return el;
-			})
+			let new_list = changeBalance(value, this.state.clients);
 
 			this.setState({clients: new_list})
 		});
 
 		voteEvent.addListener('changeFamily', value => {
-			let new_list = this.state.clients.map(el=> {
-				if(el.id === value[0]) 
-					el.family = value[1]
-				
-				return el;
-			})
-
+			let new_list = changeFamily(value, this.state.clients);
 			this.setState({clients: new_list})
 		});
 
 		voteEvent.addListener('addClient', () => {
-
-			let arr_id = this.state.clients.map(el=> el.id);
-
-			let max_id = Math.max(...arr_id)
-
-			let new_list = [...this.state.clients, {
-				id: max_id  + 1,
-				family: '',
-				name: 'Григорий',
-				patronymic: 'Григорьевич',
-				balance: 100
-			}];
-			
+			let new_list = addClient(this.state.clients)
 			this.setState({clients: new_list})
 
 		});
@@ -126,12 +88,12 @@ export default class Main extends React.PureComponent{
 
 
 	render() {
-		console.log('render main')
+		console.log('render mai')
 
 		let { company, clients, sort } = this.state;
 
 		if(sort)
-			clients = this.sortClients(clients)
+			clients = sortClients(clients, sort)
 
 		return (
 			<div className="wrapper">
