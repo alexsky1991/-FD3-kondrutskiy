@@ -57,12 +57,12 @@ export default class Client extends React.PureComponent{
 				</div>
 				<div className={status}>{status}</div>
 				<div>
-					<div className="table_item_button" onClick={this.redactInfo}>
+					<div className="table_item_button" about="reduct" onClick={this.redactInfo}>
 						Редактировать
 					</div>
 				</div>
 				<div>
-					<div className="table_item_button" id="add" onClick={() => this.removeClient(id)}>
+					<div className="table_item_button" about="remove" onClick={() => this.removeClient(id)}>
 						Удалить
 					</div>
 				</div>

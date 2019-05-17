@@ -85,6 +85,9 @@ export default class Main extends React.PureComponent{
 		});
 	}
 
+	click = () => {
+		console.log(6)		
+	}
 
 
 	render() {
@@ -97,7 +100,7 @@ export default class Main extends React.PureComponent{
 
 		return (
 			<div className="wrapper">
-				<div id ="pres">pres</div>
+				<div id ="pres" onClick={this.click}>pres</div>
 				<Table clients={clients}/>
 			</div>
 			

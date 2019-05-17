@@ -23,7 +23,7 @@ export default class Table extends React.PureComponent{
 
 		return (
 			<div>
-				<div className="table_panel" onClick={this.sortClients}>
+				<div id="table_panel" className="table_panel" onClick={this.sortClients}>
 					<div id='all' className="table_panel_button">Все</div>
 					<div id='active' className="table_panel_button">Активные</div>
 					<div id='blocked' className="table_panel_button">Заблокированные</div>
