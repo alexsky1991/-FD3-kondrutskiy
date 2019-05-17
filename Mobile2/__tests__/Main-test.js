@@ -15,5 +15,13 @@ test('работа Main', () => {
   let componentTree=component.toJSON();
   expect(componentTree).toMatchSnapshot();
 
+   const buttonElem = component.root.find( el => el.id=='pres' ); 
+ 
+  buttonElem.onClick();
+
+  componentTree=component.toJSON();
+  expect(componentTree).toMatchSnapshot();
+
+
 });
  

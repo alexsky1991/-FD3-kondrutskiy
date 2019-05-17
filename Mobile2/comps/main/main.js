@@ -97,6 +97,7 @@ export default class Main extends React.PureComponent{
 
 		return (
 			<div className="wrapper">
+				<div id ="pres">pres</div>
 				<Table clients={clients}/>
 			</div>
 			
