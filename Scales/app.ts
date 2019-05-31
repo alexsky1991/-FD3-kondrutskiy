@@ -3,7 +3,7 @@ class Scales {
 
     products:any[] = [];
 
-    add = (item:object):void => {
+    add = (item:Product):void => {
         this.products.push(item);
     }
 
@@ -52,11 +52,11 @@ class Tomato extends Product {
 }
 
 
-let apple1 = new Apple('яблоко', 52);
-let apple2 = new Apple('помидор1', 32);
-let tomato1 = new Tomato('помидор2', 15);
+let apple1:Apple = new Apple('яблоко', 52);
+let apple2:Apple = new Apple('помидор1', 32);
+let tomato1:Tomato = new Tomato('помидор2', 15);
 
-let scales1 = new Scales();
+let scales1:Scales = new Scales();
 
 scales1.add(apple1);
 scales1.add(apple2);
