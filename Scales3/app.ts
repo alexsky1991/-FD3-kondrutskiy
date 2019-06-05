@@ -11,6 +11,7 @@ interface IStorageEngine{
 
 class Scales<StorageEngine extends IStorageEngine> {
 
+
     constructor(public item:StorageEngine){}
 
 
@@ -69,17 +70,16 @@ let apple1:Product = new Product('яблоко', 52);
 let apple2:Product = new Product('помидор1', 32);
 let tomato1:Product = new Product('помидор2', 15);
 
-let scales1:ScalesStorageEngineArray = new ScalesStorageEngineArray();
+let scales = new ScalesStorageEngineArray();
 
-scales1.addItem(apple1);
-scales1.addItem(apple2);
-scales1.addItem(tomato1);
+let scales1 = new Scales<ScalesStorageEngineArray>(scales);
 
-let scales2 = new Scales<ScalesStorageEngineArray>(scales1)
+// scales1.addItem(apple1);
+// scales1.addItem(apple2);
+// scales1.addItem(tomato1);
 
 
-console.log(scales1.getCount());
-console.log(scales2.getSumScale());
+console.log(scales1.getSumScale());
 // console.log(scales1.getNameList());
 
 

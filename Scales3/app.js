@@ -1,7 +1,11 @@
 var Scales = /** @class */ (function () {
-    function Scales(item) {
-        this.item = item;
-        this.products = [];
+    function Scales(obj) {
+        var _this = this;
+        this.getSumScale = function () {
+            console.log(_this.item);
+            return 1;
+        };
+        this.item = obj;
     }
     return Scales;
 }());
@@ -42,8 +46,4 @@ var scales1 = new ScalesStorageEngineArray();
 scales1.addItem(apple1);
 scales1.addItem(apple2);
 scales1.addItem(tomato1);
-var scales2 = new Scales(scales1);
-// console.log(scales1.getSumScale());
-// console.log(scales1.getNameList());
-console.log(scales1.getCount());
 //# sourceMappingURL=app.js.map
