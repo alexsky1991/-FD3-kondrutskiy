@@ -29,40 +29,20 @@ class Scales {
 
 class Apple implements IScalable {
 
-    name:string;
-    weight:number;
+    constructor(public name:string, public weight:number){}
 
-    constructor(name:string, weight:number){
-        this.name = name;
-        this.weight = weight;
-    }
-
-    getScale = ():void => {
-        console.log(this.weight)
-    }
-
-    getName = ():void => {
-        console.log(this.name)
-    }
+    getScale = ():void => console.log(this.weight)
+    
+    getName = ():void => console.log(this.name)
 }
 
 class Tomato implements IScalable  {
 
-    name:string;
-    weight:number;
+    constructor(public name:string, public weight:number){}
 
-    constructor(name:string, weight:number){
-        this.name = name;
-        this.weight = weight;
-    }
-
-    getScale = ():void => {
-        console.log(this.weight)
-    }
-
-    getName = ():void => {
-        console.log(this.name)
-    }
+    getScale = ():void => console.log(this.weight)
+    
+    getName = ():void => console.log(this.name)
 }
 
 

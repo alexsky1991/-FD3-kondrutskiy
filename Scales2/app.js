@@ -19,28 +19,20 @@ var Scales = /** @class */ (function () {
 var Apple = /** @class */ (function () {
     function Apple(name, weight) {
         var _this = this;
-        this.getScale = function () {
-            console.log(_this.weight);
-        };
-        this.getName = function () {
-            console.log(_this.name);
-        };
         this.name = name;
         this.weight = weight;
+        this.getScale = function () { return console.log(_this.weight); };
+        this.getName = function () { return console.log(_this.name); };
     }
     return Apple;
 }());
 var Tomato = /** @class */ (function () {
     function Tomato(name, weight) {
         var _this = this;
-        this.getScale = function () {
-            console.log(_this.weight);
-        };
-        this.getName = function () {
-            console.log(_this.name);
-        };
         this.name = name;
         this.weight = weight;
+        this.getScale = function () { return console.log(_this.weight); };
+        this.getName = function () { return console.log(_this.name); };
     }
     return Tomato;
 }());
