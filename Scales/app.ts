@@ -1,7 +1,7 @@
 
 class Scales {
 
-    products:any[] = [];
+    products:Product[] = [];
 
     add = (item:Product):void => {
         this.products.push(item);
@@ -40,15 +40,11 @@ class Product {
 }
 
 class Apple extends Product {
-    constructor(name:string, weight:number){
-        super(name, weight);
-    }
+
 }
 
 class Tomato extends Product {
-    constructor(name:string, weight:number){
-        super(name, weight);
-    }
+
 }
 
 

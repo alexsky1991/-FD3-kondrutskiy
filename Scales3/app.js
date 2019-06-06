@@ -42,7 +42,7 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         this.number = 0;
         this.addItem = function (item) {
             var json = JSON.stringify(item);
-            localStorage[_this.number.toString(), json];
+            localStorage[_this.number.toString()] = json;
             _this.number++;
         };
         this.getItem = function (index) {

@@ -1,13 +1,12 @@
 import React from 'react';
 
-let withRainbowFrame = (colors) => (Fragment) => {
-	let div = Fragment;
+let withRainbowFrame = colors => Component => {
 	
-	colors.map(el => {
-		div = <div style={{border: '3px solid ' + el}}>{div}</div>
+	colors.forEach(el => {
+		Component = <div style={{border: '3px solid ' + el}}>{Component}</div>
 	})
 
-	return div
+	return Component
 }
 
 export default withRainbowFrame;

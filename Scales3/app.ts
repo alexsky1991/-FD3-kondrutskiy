@@ -1,7 +1,7 @@
 
 interface IStorageEngine{
 
-    addItem(item:any):void;
+    addItem(item:Product):void;
 
     getItem(index:number):Product;
 
@@ -62,7 +62,7 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
     addItem = (item:Product):void => {
         var json = JSON.stringify(item);
 
-        localStorage[this.number.toString(), json];
+        localStorage[this.number.toString()] = json;
         this.number++;
     }
        

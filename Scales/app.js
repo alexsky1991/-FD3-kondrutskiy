@@ -45,15 +45,15 @@ var Product = /** @class */ (function () {
 }());
 var Apple = /** @class */ (function (_super) {
     __extends(Apple, _super);
-    function Apple(name, weight) {
-        return _super.call(this, name, weight) || this;
+    function Apple() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return Apple;
 }(Product));
 var Tomato = /** @class */ (function (_super) {
     __extends(Tomato, _super);
-    function Tomato(name, weight) {
-        return _super.call(this, name, weight) || this;
+    function Tomato() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return Tomato;
 }(Product));

@@ -6,11 +6,11 @@ var Scales = /** @class */ (function () {
             _this.products.push(item);
         };
         this.getSumScale = function () {
-            var result = _this.products.reduce(function (a, b) { return a + b.weight; }, 0);
+            var result = _this.products.reduce(function (a, b) { return a + b.getScale(); }, 0);
             return result;
         };
         this.getNameList = function () {
-            var result = _this.products.map(function (el) { return el.name; });
+            var result = _this.products.map(function (el) { return el.getName(); });
             return result;
         };
     }
@@ -21,8 +21,8 @@ var Apple = /** @class */ (function () {
         var _this = this;
         this.name = name;
         this.weight = weight;
-        this.getScale = function () { return console.log(_this.weight); };
-        this.getName = function () { return console.log(_this.name); };
+        this.getScale = function () { return _this.weight; };
+        this.getName = function () { return _this.name; };
     }
     return Apple;
 }());
@@ -31,8 +31,8 @@ var Tomato = /** @class */ (function () {
         var _this = this;
         this.name = name;
         this.weight = weight;
-        this.getScale = function () { return console.log(_this.weight); };
-        this.getName = function () { return console.log(_this.name); };
+        this.getScale = function () { return _this.weight; };
+        this.getName = function () { return _this.name; };
     }
     return Tomato;
 }());

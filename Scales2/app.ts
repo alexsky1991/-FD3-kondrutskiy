@@ -1,13 +1,9 @@
 
 interface IScalable {
 
-    weight:number;
+    getScale():number;
 
-    name:string;
-
-    getScale():void;
-
-    getName():void;
+    getName():string;
 }
 
 
@@ -20,12 +16,12 @@ class Scales {
     }
 
     getSumScale = ():number => {
-        let result:number = this.products.reduce((a,b) => a + b.weight, 0);
+        let result:number = this.products.reduce((a,b) => a + b.getScale(), 0);
         return result;
     }
 
     getNameList = ():string[] => {
-        let result:string[] = this.products.map(el => el.name)
+        let result:string[] = this.products.map(el => el.getName())
         return result;
     }
 }
@@ -35,18 +31,18 @@ class Apple implements IScalable {
 
     constructor(public name:string, public weight:number){}
 
-    getScale = ():void => console.log(this.weight)
+    getScale = ():number => this.weight
     
-    getName = ():void => console.log(this.name)
+    getName = ():string => this.name
 }
 
 class Tomato implements IScalable  {
 
     constructor(public name:string, public weight:number){}
 
-    getScale = ():void => console.log(this.weight)
+    getScale = ():number => this.weight
     
-    getName = ():void => console.log(this.name)
+    getName = ():string => this.name
 }
 
 
