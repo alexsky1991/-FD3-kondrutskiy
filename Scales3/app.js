@@ -29,7 +29,9 @@ var ScalesStorageEngineArray = /** @class */ (function () {
         this.addItem = function (item) {
             _this.products.push(item);
         };
-        this.getItem = function (index) { return _this.products[index]; };
+        this.getItem = function (index) {
+            return _this.products[index];
+        };
         this.getCount = function () { return _this.products.length; };
     }
     return ScalesStorageEngineArray;
@@ -40,11 +42,12 @@ var ScalesStorageEngineLocalStorage = /** @class */ (function () {
         this.number = 0;
         this.addItem = function (item) {
             var json = JSON.stringify(item);
-            localStorage.setItem(_this.number.toString(), json);
+            localStorage[_this.number.toString(), json];
             _this.number++;
         };
         this.getItem = function (index) {
-            var res = JSON.parse(localStorage[index]);
+            var obj = JSON.parse(localStorage[index]);
+            var res = new Product(obj['name'], obj['weight']);
             return res;
         };
         this.getCount = function () { return _this.number; };
@@ -64,11 +67,18 @@ var Product = /** @class */ (function () {
 var apple1 = new Product('яблоко', 52);
 var apple2 = new Product('помидор1', 32);
 var tomato1 = new Product('помидор2', 15);
-var arr = new ScalesStorageEngineLocalStorage();
-var scales1 = new Scales(arr);
-scales1.add(apple1);
-scales1.add(apple2);
-scales1.add(tomato1);
-console.log(scales1.getSumScale());
-console.log(scales1.getNameList());
+var arr = new ScalesStorageEngineArray();
+var scalesArr = new Scales(arr);
+scalesArr.add(apple1);
+scalesArr.add(apple2);
+scalesArr.add(tomato1);
+console.log(scalesArr.getSumScale());
+console.log(scalesArr.getNameList());
+var storage = new ScalesStorageEngineLocalStorage();
+var scalesStorage = new Scales(storage);
+scalesStorage.add(apple1);
+scalesStorage.add(apple2);
+scalesStorage.add(tomato1);
+console.log(scalesStorage.getSumScale());
+console.log(scalesStorage.getNameList());
 //# sourceMappingURL=app.js.map

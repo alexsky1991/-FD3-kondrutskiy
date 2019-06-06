@@ -1,6 +1,10 @@
 
 interface IScalable {
 
+    weight:number;
+
+    name:string;
+
     getScale():void;
 
     getName():void;
@@ -9,7 +13,7 @@ interface IScalable {
 
 class Scales {
 
-    products:any[] = [];
+    products:IScalable[] = [];
 
     add = (item:IScalable):void => {
         this.products.push(item);
